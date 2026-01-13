@@ -1,6 +1,6 @@
 // src/App.jsx
 import { useState } from 'react';
-import Home from './home';
+import Home from './Home';
 import ChatInterface from './ChatInterface';
 import './App.css';
 
