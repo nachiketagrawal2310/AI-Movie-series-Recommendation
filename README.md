@@ -45,8 +45,7 @@
 
   <h3>Installation</h3>
   <pre><code>git clone https://github.com/nachiketagrawal2310/AI-Movie-series-Recommendation.git
-cd my-anime-ai
-npm install</code></pre>
+  npm install</code></pre>
 
   <h3>Environment Variables</h3>
   <pre><code>VITE_GEMINI_KEY=your_actual_api_key_here</code></pre>
