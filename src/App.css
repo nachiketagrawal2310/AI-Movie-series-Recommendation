@@ -283,70 +283,72 @@
     font-weight: bold;
   }
   .send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-  
   /* =========================================
-     4. MOBILE RESPONSIVENESS (The New Part)
-     ========================================= */
-  @media (max-width: 768px) {
-    
-    /* --- Home Page Mobile --- */
-    .hero-content h1 {
-      font-size: 2.5rem;
-    }
-    
-    .stats-row {
-      flex-direction: column;
-      gap: 30px;
-    }
-    
-    .navbar {
-      padding: 15px 20px;
-    }
-    .nav-links {
-      display: none; /* Hide standard links on mobile */
-    }
+   4. MOBILE RESPONSIVENESS (High Performance)
+   ========================================= */
+@media (max-width: 768px) {
   
-    /* --- Chat App Mobile --- */
-    .app-container {
-      flex-direction: column; /* Stack vertically */
-      height: 100dvh;
-    }
-  
-    .sidebar {
-      width: 100%;
-      height: 250px; /* Fixed height for watchlist at top */
-      border-right: none;
-      border-bottom: 1px solid #444;
-      padding: 15px;
-    }
-    
-    .sidebar h2 {
-      font-size: 1rem;
-    }
-  
-    .chat-container {
-      width: 100%;
-      height: calc(100dvh - 250px); /* Takes remaining space */
-    }
-  
-    .messages-area {
-      padding: 10px;
-    }
-  
-    .message {
-      max-width: 85%;
-      font-size: 0.9rem;
-    }
-  
-    .input-area {
-      padding: 10px;
-    }
-  
-    .chat-input {
-      padding: 10px 15px;
-    }
-    
-    .send-btn {
-      padding: 10px 20px;
-    }
+  /* --- 1. Fix Layout Stacking --- */
+  .app-container {
+    flex-direction: column;
+    height: 100dvh; /* Dynamic height for mobile browsers */
+    overflow: hidden; /* Stop the whole page from bouncing */
   }
+
+  /* --- 2. Optimize Sidebar (Watchlist) --- */
+  .sidebar {
+    width: 100%;
+    height: 40%; /* Takes top 40% of screen */
+    border-right: none;
+    border-bottom: 2px solid #333;
+    padding: 10px 15px;
+    z-index: 10; /* Keeps it above chat */
+  }
+  
+  /* Make buttons bigger for fingers */
+  .add-anime-form button, .remove-btn {
+    padding: 12px 15px; /* Larger touch target */
+  }
+
+  /* --- 3. Optimize Chat Area --- */
+  .chat-container {
+    width: 100%;
+    height: 60%; /* Takes bottom 60% */
+  }
+
+  .messages-area {
+    padding: 10px;
+    /* ENABLE SMOOTH SCROLLING (Crucial for mobile feel) */
+    -webkit-overflow-scrolling: touch; 
+    scroll-behavior: smooth;
+  }
+
+  .message {
+    max-width: 85%;
+    font-size: 16px; /* Prevents text from being too small to read */
+  }
+
+  /* --- 4. Fix "Laggy" Inputs (Crucial) --- */
+  .input-area {
+    padding: 10px;
+    background: #1e1e1e; /* Solid color instead of transparent to save GPU */
+  }
+
+  .chat-input {
+    font-size: 16px; /* IMPORTANT: Stops iOS from zooming in when tapped */
+    padding: 12px;
+  }
+  
+  /* --- 5. Disable Heavy Graphics on Mobile --- */
+  .navbar {
+    backdrop-filter: none; /* Disables blur (Huge speed boost) */
+    background: rgba(15, 12, 41, 0.95); /* Solid-ish background instead */
+    padding: 15px;
+  }
+  
+  .hero-section {
+    padding: 20px;
+  }
+  
+  .nav-links { display: none; }
+}
