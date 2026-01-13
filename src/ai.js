@@ -1,4 +1,4 @@
-// src/ai.js
+
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // const genAI = new GoogleGenerativeAI("AIzaSyA2E2FNycWW5-oigmvbxro77m56Nf-J_ns");

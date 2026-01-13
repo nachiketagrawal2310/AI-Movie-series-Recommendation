@@ -1,4 +1,6 @@
-
+/* =========================================
+   1. GLOBAL VARIABLES & RESET
+   ========================================= */
    :root {
     --bg-dark: #121212;
     --sidebar-bg: #1e1e1e;
@@ -17,11 +19,11 @@
     color: var(--text-primary);
     width: 100%;
     height: 100vh;
-    overflow: hidden; /* Prevents double scrollbars */
+    /* overflow: hidden;  <-- REMOVED THIS. It causes "stuck" pages on some phones */
   }
   
   /* =========================================
-     2. HOME PAGE STYLES (Landing Screen)
+     2. HOME PAGE STYLES
      ========================================= */
   .home-container {
     min-height: 100vh;
@@ -29,7 +31,6 @@
     background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
     display: flex;
     flex-direction: column;
-    overflow-y: auto; /* Allows scrolling on home page */
   }
   
   .navbar {
@@ -41,104 +42,37 @@
     border-bottom: 1px solid rgba(255,255,255,0.1);
   }
   
-  .logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: white;
-  }
-  
-  .nav-links a {
-    color: #ccc;
-    text-decoration: none;
-    margin-right: 25px;
-    font-size: 0.9rem;
-    transition: 0.3s;
-  }
+  .logo { font-size: 1.5rem; font-weight: 800; color: white; }
+  .nav-links a { color: #ccc; text-decoration: none; margin-right: 25px; transition: 0.3s; }
   .nav-links a:hover { color: white; }
-  
-  .nav-btn {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.3);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+  .nav-btn { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: white; padding: 8px 16px; border-radius: 20px; cursor: pointer; transition: 0.3s; }
   .nav-btn:hover { background: white; color: black; }
   
-  .hero-section {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 40px 20px;
-  }
+  .hero-section { flex: 1; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; }
+  .hero-content h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
+  .highlight { background: var(--accent-gradient); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero-subtitle { font-size: 1.2rem; color: #aaa; max-width: 600px; margin: 0 auto 40px auto; }
   
-  .hero-content h1 {
-    font-size: 4rem;
-    line-height: 1.1;
-    margin-bottom: 20px;
-  }
+  .cta-button { padding: 18px 40px; font-size: 1.1rem; background: var(--accent-gradient); color: white; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 10px 20px rgba(100, 108, 255, 0.3); transition: transform 0.2s; }
+  .cta-button:hover { transform: translateY(-2px); }
   
-  .highlight {
-    background: var(--accent-gradient);
-    /* Add the standard property first (often ignored by browsers for text, but good for linting) */
-    background-clip: text; 
-    /* The webkit version is what actually makes it work in Chrome/Safari/Edge */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  .hero-subtitle {
-    font-size: 1.2rem;
-    color: #aaa;
-    max-width: 600px;
-    margin: 0 auto 40px auto;
-    line-height: 1.6;
-  }
-  
-  .cta-button {
-    padding: 18px 40px;
-    font-size: 1.1rem;
-    background: var(--accent-gradient);
-    color: white;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: bold;
-    box-shadow: 0 10px 20px rgba(100, 108, 255, 0.3);
-    transition: transform 0.2s;
-  }
-  .cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 30px rgba(100, 108, 255, 0.4);
-  }
-  
-  .stats-row {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    margin-top: 60px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 30px;
-  }
+  .stats-row { display: flex; justify-content: center; gap: 50px; margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; }
   .stat-item { display: flex; flex-direction: column; }
   .stat-number { font-size: 1.5rem; font-weight: bold; }
-  .stat-label { font-size: 0.8rem; color: #777; text-transform: uppercase; letter-spacing: 1px; }
+  .stat-label { font-size: 0.8rem; color: #777; letter-spacing: 1px; }
   
   /* =========================================
-     3. CHAT INTERFACE STYLES (The App)
+     3. CHAT INTERFACE STYLES
      ========================================= */
   .app-container {
     display: flex;
-    height: 100vh;
+    height: 100vh; /* Full viewport height */
     width: 100vw;
     background-color: var(--bg-dark);
+    overflow: hidden; /* Only hide overflow on the app container, not body */
   }
   
-  /* Sidebar */
+  /* Sidebar (Watchlist) */
   .sidebar {
     width: 300px;
     background-color: var(--sidebar-bg);
@@ -150,54 +84,12 @@
     flex-shrink: 0;
   }
   
-  .sidebar h2 {
-    font-size: 1.2rem;
-    margin: 0;
-    color: var(--accent);
-  }
-  
-  .add-anime-form {
-    display: flex;
-    gap: 10px;
-    margin: 20px 0;
-  }
-  
-  .add-anime-form input {
-    flex: 1;
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #444;
-    background: #2a2a2a;
-    color: white;
-  }
-  
-  .add-anime-form button {
-    padding: 0 15px;
-    background: var(--accent);
-    border: none;
-    border-radius: 6px;
-    color: white;
-    cursor: pointer;
-    font-size: 1.2rem;
-  }
-  
-  .anime-list {
-    list-style: none;
-    padding: 0;
-    overflow-y: auto;
-    flex: 1;
-  }
-  
-  .anime-item {
-    padding: 10px;
-    background: #2a2a2a;
-    margin-bottom: 8px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  .sidebar h2 { font-size: 1.2rem; margin: 0; color: var(--accent); }
+  .add-anime-form { display: flex; gap: 10px; margin: 20px 0; }
+  .add-anime-form input { flex: 1; padding: 10px; border-radius: 6px; border: 1px solid #444; background: #2a2a2a; color: white; }
+  .add-anime-form button { padding: 0 15px; background: var(--accent); border: none; border-radius: 6px; color: white; cursor: pointer; font-size: 1.2rem; }
+  .anime-list { list-style: none; padding: 0; overflow-y: auto; flex: 1; }
+  .anime-item { padding: 10px; background: #2a2a2a; margin-bottom: 8px; border-radius: 6px; font-size: 0.9rem; display: flex; justify-content: space-between; align-items: center; }
   .remove-btn { color: #ff4d4d; cursor: pointer; margin-left: 10px; font-weight: bold; }
   
   /* Main Chat Area */
@@ -208,16 +100,10 @@
     background-color: var(--chat-bg);
     position: relative;
     height: 100%;
+    min-width: 0; /* Critical flexbox fix */
   }
   
-  .chat-header {
-    padding: 15px 20px;
-    border-bottom: 1px solid #333;
-    background: var(--chat-bg);
-    font-weight: bold;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-  }
+  .chat-header { padding: 15px 20px; border-bottom: 1px solid #333; background: var(--chat-bg); font-weight: bold; font-size: 1.1rem; flex-shrink: 0; }
   
   .messages-area {
     flex: 1;
@@ -226,129 +112,71 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    min-height: 0; /* Allows scrolling inside flex item */
   }
   
-  .message {
-    max-width: 75%;
-    padding: 12px 18px;
-    border-radius: 12px;
-    line-height: 1.5;
-    font-size: 0.95rem;
-    word-wrap: break-word;
-  }
+  .message { max-width: 75%; padding: 12px 18px; border-radius: 12px; line-height: 1.5; font-size: 0.95rem; word-wrap: break-word; }
+  .message.user { align-self: flex-end; background-color: var(--accent); color: white; border-bottom-right-radius: 2px; }
+  .message.ai { align-self: flex-start; background-color: #333; color: #eee; border-bottom-left-radius: 2px; white-space: pre-wrap; }
   
-  .message.user {
-    align-self: flex-end;
-    background-color: var(--accent);
-    color: white;
-    border-bottom-right-radius: 2px;
-  }
-  
-  .message.ai {
-    align-self: flex-start;
-    background-color: #333;
-    color: #eee;
-    border-bottom-left-radius: 2px;
-    white-space: pre-wrap;
-  }
-  
-  .input-area {
-    padding: 15px 20px;
-    background-color: var(--sidebar-bg);
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    flex-shrink: 0;
-  }
-  
-  .chat-input {
-    flex: 1;
-    padding: 14px;
-    border-radius: 30px;
-    border: 1px solid #444;
-    background: #2a2a2a;
-    color: white;
-    font-size: 1rem;
-    outline: none;
-  }
+  .input-area { padding: 15px 20px; background-color: var(--sidebar-bg); display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
+  .chat-input { flex: 1; padding: 14px; border-radius: 30px; border: 1px solid #444; background: #2a2a2a; color: white; font-size: 1rem; outline: none; }
   .chat-input:focus { border-color: var(--accent); }
-  
-  .send-btn {
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 14px 28px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-weight: bold;
-  }
+  .send-btn { background: var(--accent); color: white; border: none; padding: 14px 28px; border-radius: 30px; cursor: pointer; font-weight: bold; }
   .send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  
   /* =========================================
-   4. MOBILE RESPONSIVENESS (High Performance)
-   ========================================= */
-@media (max-width: 768px) {
+     4. MOBILE RESPONSIVENESS (Refined)
+     ========================================= */
+  @media (max-width: 768px) {
+    .app-container {
+      flex-direction: column;
+      /* Use dvh (dynamic viewport height) to account for mobile browser bars */
+      height: 100dvh; 
+    }
   
-  /* --- 1. Fix Layout Stacking --- */
-  .app-container {
-    flex-direction: column;
-    height: 100dvh; /* Dynamic height for mobile browsers */
-    overflow: hidden; /* Stop the whole page from bouncing */
-  }
-
-  /* --- 2. Optimize Sidebar (Watchlist) --- */
-  .sidebar {
-    width: 100%;
-    height: 40%; /* Takes top 40% of screen */
-    border-right: none;
-    border-bottom: 2px solid #333;
-    padding: 10px 15px;
-    z-index: 10; /* Keeps it above chat */
-  }
+    /* --- Compact Sidebar for Mobile --- */
+    .sidebar {
+      width: 100%;
+      /* Shrink sidebar to just a header area unless list is long, 
+         but restrict max height so it doesn't eat the screen */
+      height: auto; 
+      max-height: 25vh; 
+      padding: 10px;
+      border-bottom: 1px solid #333;
+      border-right: none;
+    }
+    
+    .sidebar h2 { font-size: 1rem; display: inline-block; margin-right: 10px;}
+    .add-anime-form { margin: 5px 0; }
+    .add-anime-form input { padding: 8px; font-size: 16px; /* Stop iOS Zoom */ }
+    .anime-list { display: flex; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; gap: 10px; padding-bottom: 5px; }
+    .anime-item { white-space: nowrap; margin-bottom: 0; padding: 5px 10px; font-size: 0.8rem; }
+    
+    /* --- Maximized Chat Area --- */
+    .chat-container {
+      height: auto; /* Let flex handle the height */
+      flex: 1;      /* Take all remaining space */
+    }
   
-  /* Make buttons bigger for fingers */
-  .add-anime-form button, .remove-btn {
-    padding: 12px 15px; /* Larger touch target */
-  }
-
-  /* --- 3. Optimize Chat Area --- */
-  .chat-container {
-    width: 100%;
-    height: 60%; /* Takes bottom 60% */
-  }
-
-  .messages-area {
-    padding: 10px;
-    /* ENABLE SMOOTH SCROLLING (Crucial for mobile feel) */
-    -webkit-overflow-scrolling: touch; 
-    scroll-behavior: smooth;
-  }
-
-  .message {
-    max-width: 85%;
-    font-size: 16px; /* Prevents text from being too small to read */
-  }
-
-  /* --- 4. Fix "Laggy" Inputs (Crucial) --- */
-  .input-area {
-    padding: 10px;
-    background: #1e1e1e; /* Solid color instead of transparent to save GPU */
-  }
-
-  .chat-input {
-    font-size: 16px; /* IMPORTANT: Stops iOS from zooming in when tapped */
-    padding: 12px;
-  }
+    .messages-area {
+      padding: 10px;
+      -webkit-overflow-scrolling: touch;
+    }
   
-  /* --- 5. Disable Heavy Graphics on Mobile --- */
-  .navbar {
-    backdrop-filter: none; /* Disables blur (Huge speed boost) */
-    background: rgba(15, 12, 41, 0.95); /* Solid-ish background instead */
-    padding: 15px;
+    .input-area {
+      padding: 10px;
+      /* Ensure input stays at bottom */
+      position: sticky;
+      bottom: 0;
+    }
+    
+    .chat-input { padding: 10px; font-size: 16px; /* Stop iOS Zoom */ }
+    .send-btn { padding: 10px 15px; }
+    
+    /* Home Page Mobile Adjustments */
+    .hero-content h1 { font-size: 2.5rem; }
+    .nav-links { display: none; }
+    .stats-row { flex-direction: column; gap: 30px; }
+    .navbar { padding: 15px; }
   }
-  
-  .hero-section {
-    padding: 20px;
-  }
-  
-  .nav-links { display: none; }
-}
